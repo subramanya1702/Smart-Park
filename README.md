@@ -15,15 +15,16 @@ Both pipelines, along with the MongoDb, are now bundled and executed as Docker c
 * [Architecture Diagram](#architecture-diagram)
 * [Usage](#usage)
   * [Production Setup](#production-setup)
+    * [Pre-requisites](#pre-requisites)
     * [Setting up MongoDb](#i-setting-up-mongodb)
     * [Setting up ML classifier](#ii-setting-up-ml-classifier)
       * [OSU access](#osu-access)
       * [Non OSU access](#non-osu-access)
     * [Setting up NodeJs application](#iii-setting-up-nodejs-application)
   * [Local/Dev Setup](#localdev-setup)
-    * [Setting up MongoDb](#setting-up-mongodb)
-    * [Setting up ML classifier](#setting-up-ml-classifier)
-    * [Setting up NodeJs application](#setting-up-nodejs-application)
+    * [Requirements](#requirements)
+    * [Setting up without docker](#setting-up-without-docker)
+    * [Setting up with docker](#setting-up-with-docker)
 * [Resources](#resources)
 
 ## Architecture Diagram
@@ -42,8 +43,8 @@ For setting up the production environment, we assume that all the three componen
 
 *All the 3 containers should ideally run on different servers so that it doesn't result in a single point of failure/cascade failure.*
 
-#### Requirements
-* Docker - Install the latest stable version of docker from [here](https://docs.docker.com/desktop/install/linux-install/) 
+#### Pre-requisites
+* Docker - Install the latest stable version of docker from [here](https://docs.docker.com/engine/install/ubuntu/) 
 
 #### I. Setting up MongoDb
 1. Download the mongodb image
@@ -187,67 +188,51 @@ Example:
 
 ### Local/Dev setup
 
-For setting up the local/dev environment, you can either follow the instructions for [production setup](#production-setup) or follow the below instructions if you don't want to use docker.
-
 #### Requirements
 * Node >= 14.0.0
 * Mongodb >= 6.0.0
 * Python = 3.9
 * Python VirtualEnv
+* Docker
 
-#### Setting up MongoDb
-1. Install mongodb by following the instructions over [here](https://www.mongodb.com/docs/manual/installation/)
+#### Setting up without docker
+If you choose to set up and run the components with docker, skip to the [next](#setting-up-with-docker) section.
 
-#### Setting up ML classifier
-1. Clone the Smart-Park-Reboot repository
+1. Install and run mongodb by following the instructions over [here](https://www.mongodb.com/docs/manual/installation/)
+2. Run the installation script `install_local.sh` to install and run ML classifier and NodeJs application
 ```sh
-git clone https://github.com/subramanya1702/Smart-Park-Reboot
+chmod +x install_local.sh
 ```
 
-2. Navigate to the `smart_park` directory
 ```sh
-cd Smart-Park-Reboot/smart_park
+./install_local.sh
+```
+3. Login to Mongodb and verify if records are getting inserted into `recentParkingLots` and `parkingLotHistory` collections. 
+4. Visit `http://localhost:8080/parking_lots` and verify if you are getting the proper response.
+5. Once you are done testing, hit CTRL+c to exit and stop the processes.
+
+#### Setting up with docker
+1. Make sure docker is installed and running. If not, you can install from [here](https://docs.docker.com/desktop/install/linux-install/)
+2. Run the installation script `install_local_with_docker.sh` to build and run all the 3 components as docker containers
+```sh
+chmod +x install_local_with_docker.sh
 ```
 
-3. Create a python virtual environment and activate it.
-4. Install the dependencies
 ```sh
-pip install requirement.txt
+./install_local_with_docker.sh
 ```
 
-5. Copy `activation.py` file to `usr/local/lib/python3.9/site-packages/torch/nn/modules/` directory
-6. Run the classifier
+3. Login to Mongodb and verify if records are getting inserted into `recentParkingLots` and `parkingLotHistory` collections. 
+4. Visit `http://localhost:8080/parking_lots` and verify if you are getting the proper response.
+
+3. Once you are done testing, clean up the resources by running the clean-up script `clean_up_local_docker.sh`. This removes the temp directory and removes all the newly created docker containers.
 ```sh
-python run_process1.py
-```
-7. Login to Mongodb and verify if records are getting inserted into `recentParkingLots` and `parkingLotHistory` collections.
-
-#### Setting up NodeJs Application
-
-1. Clone the repository
-
-```sh
-git clone https://github.com/subramanya1702/Smart-Park-Server.git
+chmod +x clean_up_local_docker.sh
 ```
 
-2. Navigate to the project directory
-
 ```sh
-cd Smart-Park-Server
+./clean_up_local_docker.sh
 ```
-
-3. Install dependencies
-
-```sh
-npm install
-```
-
-4. Run the application
-
-```sh
-npm run start:dev
-```
-5. Go to `http://localhost:8080/parking_lots` and verify if you are getting the proper response.
 
 ## Resources
 
@@ -255,8 +240,9 @@ npm run start:dev
   * [ML classifier](https://github.com/subramanya1702/Smart-Park-Reboot)
   * [NodeJs application](https://github.com/subramanya1702/Smart-Park-Server)
 
-* [Install Docker](https://docs.docker.com/desktop/install/linux-install/)
+* [Install Docker](https://docs.docker.com/engine/install/ubuntu/)
 * [Install MongoDb](https://www.mongodb.com/docs/manual/installation/)
 * [OSU Box folder](https://oregonstate.app.box.com/folder/209117371306)
+
 ## Contributors
 Subramanya Keshavamurthy
