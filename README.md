@@ -18,8 +18,8 @@ Both pipelines, along with the MongoDb, are now bundled and executed as Docker c
     * [Pre-requisites](#pre-requisites)
     * [Setting up MongoDb](#i-setting-up-mongodb)
     * [Setting up ML classifier](#ii-setting-up-ml-classifier)
-      * [OSU access](#osu-access)
-      * [Non OSU access](#non-osu-access)
+      * [Oregon State University access](#oregon-state-university-access)
+      * [Non Oregon State University access](#non-oregon-state-university-access)
     * [Setting up NodeJs application](#iii-setting-up-nodejs-application)
   * [Local/Dev Setup](#localdev-setup)
     * [Requirements](#requirements)
@@ -61,13 +61,13 @@ docker run -dp 27017:27017 --name mongo --restart always mongo:6.0
 
 #### II. Setting up ML classifier
 
-##### OSU access
-Continue with this section if you have an OSU account and have access to this box [folder](https://oregonstate.app.box.com/folder/209117371306). 
+#### Oregon State University access
+Continue with this section if you have an Oregon State University account and have access to this Box [folder](https://oregonstate.app.box.com/folder/209117371306). 
 If not, jump ahead to the [next](#non-osu-access) section.
 
 1. Ensure you are on a system with x86 architecture and Linux operating system
 2. System has at least 2GB of RAM and 24GB of disk space 
-3. Download the latest Smart Park tar archive file from the box folder over [here](https://oregonstate.app.box.com/folder/209117371306) 
+3. Download the latest Smart Park tar archive file from the Box folder over [here](https://oregonstate.app.box.com/folder/209117371306) 
 4. Unzip the tar archive
     ```sh
     tar -xzvf <filename>.tar.gz
@@ -101,7 +101,7 @@ If not, jump ahead to the [next](#non-osu-access) section.
 
 9. Log in to the MongoDb container and verify if records are getting inserted into `recentParkingLots` and `parkingLotHistory` collections.
 
-##### Non OSU access 
+#### Non Oregon State University access 
 1. Ensure that you are on a Linux system with x86 architecture. If you don’t have access to one, follow the below instructions.
    Note: These instructions assume that you will be using AWS as the cloud service provider. Skip this step if you are using a different provider.
    1. Go to EC2 console in AWS
@@ -194,6 +194,11 @@ Example:
 * Python = 3.9
 * Python VirtualEnv
 * Docker
+
+Let's start by cloning the Smart-Park repository
+```sh
+git clone https://github.com/subramanya1702/Smart-Park.git
+```
 
 #### Setting up without docker
 If you choose to set up and run the components with docker, skip to the [next](#setting-up-with-docker) section.
