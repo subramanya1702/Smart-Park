@@ -65,11 +65,11 @@ function set_up_classifier() {
   echo
 
   # Clone the repository
-  git clone https://github.com/subramanya1702/Smart-Park-Reboot.git
+  git clone https://github.com/subramanya1702/SmartPark-ML-Classifier.git
 
   # Navigate to smart_park directory
   # shellcheck disable=SC2164
-  cd Smart-Park-Reboot/smart_park
+  cd SmartPark-ML-Classifier/smart_park
 
   # Create and activate a virtual environment
   python -m venv env
@@ -98,11 +98,11 @@ function set_up_node_app() {
   echo
 
   # Clone the repository
-  git clone https://github.com/subramanya1702/Smart-Park-Server.git
+  git clone https://github.com/subramanya1702/SmartPark-REST-API.git
 
-  # Navigate to Smart-Park-Server directory
+  # Navigate to SmartPark-REST-API directory
   # shellcheck disable=SC2164
-  cd Smart-Park-Server
+  cd SmartPark-REST-API
 
   # Install dependencies
   npm install
