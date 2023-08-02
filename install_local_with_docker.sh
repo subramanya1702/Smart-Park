@@ -29,11 +29,11 @@ function run_mongodb() {
 # Run ML classifier
 function run_classifier() {
   # Clone the repository
-  git clone https://github.com/subramanya1702/Smart-Park-Reboot.git
+  git https://github.com/subramanya1702/SmartPark-ML-Classifier.git
 
   # Navigate to smart_park directory
   # shellcheck disable=SC2164
-  cd Smart-Park-Reboot/smart_park
+  cd SmartPark-ML-Classifier/smart_park
 
   # Download pytorch file
   curl -L -O https://github.com/VilledeMontreal/urban-detection/releases/download/v0.1-alpha/X-512.pt
@@ -45,14 +45,14 @@ function run_classifier() {
 # Run NodeJs application
 function run_node_app() {
   # Clone the repository
-  git clone https://github.com/subramanya1702/Smart-Park-Server.git
+  git clone https://github.com/subramanya1702/SmartPark-REST-API.git
 
-  # Navigate to Smart-Park-Server directory
+  # Navigate to SmartPark-REST-API directory
   # shellcheck disable=SC2164
-  cd Smart-Park-Server
+  cd SmartPark-REST-API
 
-  docker build -t spserver .
-  docker run -dp 8080:8080 --env DB_CONN_STR=mongo:27017 --network smartnetwork --name spserver spserver
+  docker build -t sprestapi .
+  docker run -dp 8080:8080 --env DB_CONN_STR=mongo:27017 --network smartnetwork --name sprestapi sprestapi
 }
 
 function install() {
