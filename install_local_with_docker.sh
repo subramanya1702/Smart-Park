@@ -29,7 +29,7 @@ function run_mongodb() {
 # Run ML classifier
 function run_classifier() {
   # Clone the repository
-  git https://github.com/subramanya1702/SmartPark-ML-Classifier.git
+  git clone https://github.com/subramanya1702/SmartPark-ML-Classifier.git
 
   # Navigate to smart_park directory
   # shellcheck disable=SC2164
