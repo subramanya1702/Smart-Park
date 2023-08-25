@@ -96,7 +96,7 @@ If not, jump ahead to the [next](#non-oregon-state-university-access---ml-classi
 
 7. Run a docker container using the newly generated image. The command will launch a new container in detached mode.
     ```sh
-    docker run -d --env DB_CONN_STR=HOSTNAME --name spclassifier --restart always <image_name>
+    docker run -d --env DB_CONN_STR=DB_HOSTNAME --name spclassifier --restart always <image_name>
     ```
    DB_CONN_STR is the mongodb connection string that needs to be passed as an environment variable to the container.
    Example:
@@ -145,7 +145,7 @@ If not, jump ahead to the [next](#non-oregon-state-university-access---ml-classi
 6. Copy the image to wherever necessary/convenient.
 7. Run a docker container using the newly copied image. The command will launch a new container in detached mode.
     ```sh
-    sudo docker run -d --env DB_CONN_STR=HOSTNAME --name spclassifier --restart always spclassifier
+    sudo docker run -d --env DB_CONN_STR=DB_HOSTNAME --name spclassifier --restart always spclassifier
     ```
    DB_CONN_STR is the mongodb connection string that needs to be passed as an environment variable to the container.
    Example:
@@ -185,7 +185,7 @@ If not, jump ahead to the [next](#non-oregon-state-university-access---node-app)
 
 7. Run a docker container using the newly generated image. The command will launch a new container in detached mode.
     ```sh
-    docker run -dp {port}:{port} --env DB_CONN_STR={MONGO_CONNECTION_STRING} --env HOSTNAME={NODE_JS_SERVER_HOSTNAME} --name sprestapi --restart always sprestapi 
+    docker run -dp {port}:{port} --env DB_CONN_STR={MONGO_CONNECTION_STRING} --env SERVER_HOSTNAME={NODE_JS_SERVER_HOSTNAME} --name sprestapi --restart always sprestapi 
     ```
 
 DB_CONN_STR is the mongodb connection string that needs to be passed as an environment variable to the container.
@@ -196,13 +196,13 @@ Example:
 * Using database server's public/external IP: `DB_CONN_STR=x.x.x.x:{port}`
 * Testing locally: `DB_CONN_STR=localhost:{port}` or `DB_CONN_STR=127.0.0.1:{port}`
 
-HOSTNAME is an optional environment variable that has to be passed if the application is being run in prod mode.
+SERVER_HOSTNAME is an optional environment variable that has to be passed if the application is being run in prod mode.
 If the application is running in dev mode (running locally), it can be skipped.
 
 Example:
 
-* Using node js server's DNS: `HOSTNAME=njs.domain.com`
-* Using node js server's public/external IP `HOSTNAME=x.x.x.x`
+* Using node js server's DNS: `SERVER_HOSTNAME=njs.domain.com`
+* Using node js server's public/external IP `SERVER_HOSTNAME=x.x.x.x`
 
 8. Inspect the container logs and verify if the application is running without any errors
     ```sh
@@ -243,7 +243,7 @@ Example:
 5. Copy the image to wherever necessary/convenient.
 6. Run a docker container using the newly generated image. The command will launch a new container in detached mode.
     ```sh
-    docker run -dp {port}:{port} --env DB_CONN_STR={MONGO_CONNECTION_STRING} --env HOSTNAME={NODE_JS_SERVER_HOSTNAME} --name sprestapi --restart always sprestapi 
+    docker run -dp {port}:{port} --env DB_CONN_STR={MONGO_CONNECTION_STRING} --env SERVER_HOSTNAME={NODE_JS_SERVER_HOSTNAME} --name sprestapi --restart always sprestapi 
     ```
 
 DB_CONN_STR is the mongodb connection string that needs to be passed as an environment variable to the container.
@@ -254,13 +254,13 @@ Example:
 * Using database server's public/external IP: `DB_CONN_STR=x.x.x.x:{port}`
 * Testing locally: `DB_CONN_STR=localhost:{port}` or `DB_CONN_STR=127.0.0.1:{port}`
 
-HOSTNAME is an optional environment variable that has to be passed if the application is being run in prod mode.
+SERVER_HOSTNAME is an optional environment variable that has to be passed if the application is being run in prod mode.
 If the application is running in dev mode (running locally), it can be skipped.
 
 Example:
 
-* Using node js server's DNS: `HOSTNAME=njs.domain.com`
-* Using node js server's public/external IP `HOSTNAME=x.x.x.x`
+* Using node js server's DNS: `SERVER_HOSTNAME=njs.domain.com`
+* Using node js server's public/external IP `SERVER_HOSTNAME=x.x.x.x`
 
 7. Inspect the container logs and verify if the application is running without any errors
     ```sh
