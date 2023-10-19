@@ -30,6 +30,7 @@ Both pipelines, along with the MongoDb, are now bundled and executed as Docker c
 ### Local/Dev setup
 
 This section goes through the steps required to set up smart park locally. For production set up, follow the instruction over here: [Production set up](Production_Setup.md)
+
 Now, let's start by cloning the Smart-Park repository
 
 ```sh
